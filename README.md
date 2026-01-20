@@ -16,19 +16,23 @@ This Terraform configuration creates the following resources in Azure:
    ```bash
    az login
    ```
-3. Initialize Terraform:
+3. Initialize Terraform (creates state file):
    ```bash
    terraform init
    ```
-4. Plan the deployment:
+4. Validate Terraform:
+   ```bash
+   terraform validate
+   ```
+5. Plan the deployment:
    ```bash
    terraform plan
    ```
-5. Apply the configuration:
+6. Apply the configuration:
    ```bash
    terraform apply
    ```
-6. To destroy the resources:
+7. To destroy the resources:
    ```bash
    terraform destroy
    ```
