@@ -23,7 +23,7 @@ This Terraform configuration creates the following resources in Azure:
    ```bash
    terraform init
    ```
-4. Validate Terraform:
+4. Validate Terraform configuration:
    ```bash
    terraform validate
    ```
@@ -31,6 +31,7 @@ This Terraform configuration creates the following resources in Azure:
    ```bash
    terraform plan
    ```
+6. Apply the configuration:
 6. Apply the configuration:
    ```bash
    terraform apply
