@@ -32,11 +32,10 @@ This Terraform configuration creates the following resources in Azure:
    terraform plan
    ```
 6. Apply the configuration:
-6. Apply the configuration:
    ```bash
    terraform apply
    ```
-8. To destroy the resources:
+7. To destroy the resources:
    ```bash
    terraform destroy
    ```
