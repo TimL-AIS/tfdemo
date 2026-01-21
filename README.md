@@ -32,7 +32,11 @@ This Terraform configuration creates the following resources in Azure:
    ```bash
    terraform apply
    ```
-7. To destroy the resources:
+7. Retrieve the private SSH key
+   ```bash
+   terraform output -raw private_key > private_key.pem
+   ```
+8. To destroy the resources:
    ```bash
    terraform destroy
    ```
