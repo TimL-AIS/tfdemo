@@ -4,6 +4,12 @@ resource "azurerm_resource_group" "demo" {
   location = "East US"
 }
 
+# Networking Resource Group
+resource "azurerm_resource_group" "networking" {
+  name     = "rg-tl-demo-networking"
+  location = "East US"
+}
+
 # Storage Account
 # Note: Azure storage account names must be 3-24 characters, lowercase letters and numbers only
 # "sa-tl-demo-1" is invalid, using "satldemo1" instead
@@ -26,14 +32,14 @@ resource "azurerm_storage_container" "demo" {
 resource "azurerm_virtual_network" "demo" {
   name                = "vnet-demo"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.demo.location
-  resource_group_name = azurerm_resource_group.demo.name
+  location            = azurerm_resource_group.networking.location
+  resource_group_name = azurerm_resource_group.networking.name
 }
 
 # Subnet
 resource "azurerm_subnet" "demo" {
   name                 = "subnet-demo"
-  resource_group_name  = azurerm_resource_group.demo.name
+  resource_group_name  = azurerm_resource_group.networking.name
   virtual_network_name = azurerm_virtual_network.demo.name
   address_prefixes     = ["10.0.1.0/24"]
 }
@@ -41,8 +47,8 @@ resource "azurerm_subnet" "demo" {
 # Network Security Group
 resource "azurerm_network_security_group" "demo" {
   name                = "nsg-demo"
-  location            = azurerm_resource_group.demo.location
-  resource_group_name = azurerm_resource_group.demo.name
+  location            = azurerm_resource_group.networking.location
+  resource_group_name = azurerm_resource_group.networking.name
 
   security_rule {
     name                       = "SSH"
@@ -72,8 +78,8 @@ resource "azurerm_network_security_group" "demo" {
 # Public IP
 resource "azurerm_public_ip" "demo" {
   name                = "pip-demo"
-  location            = azurerm_resource_group.demo.location
-  resource_group_name = azurerm_resource_group.demo.name
+  location            = azurerm_resource_group.networking.location
+  resource_group_name = azurerm_resource_group.networking.name
   allocation_method   = "Static"
   sku                 = "Standard"
 }
@@ -81,8 +87,8 @@ resource "azurerm_public_ip" "demo" {
 # Network Interface
 resource "azurerm_network_interface" "demo" {
   name                = "nic-demo"
-  location            = azurerm_resource_group.demo.location
-  resource_group_name = azurerm_resource_group.demo.name
+  location            = azurerm_resource_group.networking.location
+  resource_group_name = azurerm_resource_group.networking.name
 
   ip_configuration {
     name                          = "internal"
