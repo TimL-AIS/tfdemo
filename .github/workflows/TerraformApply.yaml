@@ -1,5 +1,10 @@
 name: Terraform Deploy
 
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
 on:
   push:
     branches:
@@ -13,12 +18,7 @@ jobs:
   terraform-deploy:
     name: 'Terraform Deploy'
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: read
-      pull-requests: write
-      id-token: write
-    
+        
     steps:
       - name: Checkout
         uses: actions/checkout@v4
