@@ -1,0 +1,16 @@
+name: Hello World
+
+on:
+  push:
+    branches:
+      - main
+      - pipeline-hello
+
+jobs:
+  hello:
+    name: 'Say Hello'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Echo Hello World
+        run: echo "Hello World"
