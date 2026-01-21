@@ -8,6 +8,9 @@ This Terraform configuration creates the following resources in Azure:
 - **Resource Group**: `rg-tl-demo-1` (in East US)
 - **Storage Account**: `satldemo1` (Note: Azure storage account names must be 3-24 characters, lowercase letters and numbers only, so hyphens are not allowed)
 - **Blob Container**: `container1` (within the storage account)
+- **Virtual Network**: `vnet-demo` with subnet
+- **Network Security Group**: Allows SSH (port 22) and HTTP (port 80)
+- **Ubuntu VM**: With NGINX web server installed
 
 ## Usage
 
@@ -31,10 +34,6 @@ This Terraform configuration creates the following resources in Azure:
 6. Apply the configuration:
    ```bash
    terraform apply
-   ```
-7. Retrieve the private SSH key
-   ```bash
-   terraform output -raw private_key > private_key.pem
    ```
 8. To destroy the resources:
    ```bash

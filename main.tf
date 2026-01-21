@@ -98,12 +98,6 @@ resource "azurerm_network_interface_security_group_association" "demo" {
   network_security_group_id = azurerm_network_security_group.demo.id
 }
 
-# SSH Key
-resource "tls_private_key" "demo" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
 # Ubuntu VM
 resource "azurerm_linux_virtual_machine" "demo" {
   name                = "vm-demo-ubuntu"
@@ -111,15 +105,12 @@ resource "azurerm_linux_virtual_machine" "demo" {
   location            = azurerm_resource_group.demo.location
   size                = var.vm_size
   admin_username      = var.admin_username
+  admin_password      = var.admin_password
+  disable_password_authentication = false
 
   network_interface_ids = [
     azurerm_network_interface.demo.id,
   ]
-
-  admin_ssh_key {
-    username   = var.admin_username
-    public_key = tls_private_key.demo.public_key_openssh
-  }
 
   os_disk {
     caching              = "ReadWrite"
@@ -144,7 +135,7 @@ resource "azurerm_linux_virtual_machine" "demo" {
     connection {
       type        = "ssh"
       user        = var.admin_username
-      private_key = tls_private_key.demo.private_key_pem
+      password    = var.admin_password
       host        = azurerm_public_ip.demo.ip_address
     }
   }
