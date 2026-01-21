@@ -1,4 +1,4 @@
-name: Terraform Deploy
+name: Terraform Plan
 
 on:
   push:
@@ -20,8 +20,8 @@ env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
 jobs:
-  terraform-deploy:
-    name: 'Terraform Deploy'
+  terraform-plan:
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
         
     steps:
