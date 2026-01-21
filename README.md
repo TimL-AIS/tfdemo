@@ -45,3 +45,13 @@ This Terraform configuration creates the following resources in Azure:
 - Terraform >= 1.0
 - Azure CLI
 - Azure subscription
+
+## GitHub Actions
+
+This project includes a GitHub Actions workflow for automated Terraform deployments. To use it, configure the following secrets in your GitHub repository:
+
+- `AZURE_CLIENT_ID`: Azure service principal client ID
+- `AZURE_TENANT_ID`: Azure tenant ID
+- `AZURE_SUBSCRIPTION_ID`: Azure subscription ID
+
+The workflow uses OIDC authentication for secure, passwordless Azure authentication.
